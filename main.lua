@@ -1,5 +1,5 @@
 --you need to test on devices
---local ibeacon = require( "plugin.ibeacon" )
+local ibeacon = require( "plugin.ibeacon" )
 local bg = display.newRect( display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight )
 local logo = display.newText( "iBeacon Plugin", 0, 0, native.systemFontBold, 20 )
 logo.x, logo.y = display.contentCenterX, 50
@@ -7,14 +7,14 @@ bg:setFillColor( .5,.09,.2 )
 local widget = require("widget")
 local uuid = "00000000-0000-0000-0000-000000000000"
 local function iBeaconLis( e )
-	print( "Beacon Found" )
-	print( "--------------" )
-	print( "accuracy:"..e.accuracy )
-	print( "uuid:"..e.uuid )
-	print( "accuracy:"..e.accuracy )
-	print( "major:"..e.major )
-	print( "minor:"..e.minor )
-	print( "--------------" )
+    print( "Beacon Found" )
+    print( "--------------" )
+    print( "accuracy:"..e.accuracy )
+    print( "uuid:"..e.uuid )
+    print( "accuracy:"..e.accuracy )
+    print( "major:"..e.major )
+    print( "minor:"..e.minor )
+    print( "--------------" )
 end
 
 local broadcast
@@ -22,6 +22,7 @@ broadcast = widget.newButton( {
 	label = "Start Broadcast",
 	id = "broadcast",
 	onEvent = function( e )
+        print(broadcast:getLabel( ))
 		if (broadcast:getLabel( ) == "Start Broadcast") then
 			if (e.phase == "began") then
 				broadcast.alpha = .3
@@ -30,8 +31,7 @@ broadcast = widget.newButton( {
 				ibeacon.startTransmitting(uuid, 10001, 69)
 				broadcast:setLabel( "Stop Broadcast" )
 			end
-		end
-		if (broadcast:getLabel( ) == "Stop Broadcast") then
+		elseif (broadcast:getLabel( ) == "Stop Broadcast") then
 			if (e.phase == "began") then
 				broadcast.alpha = .3
 			else
@@ -58,8 +58,7 @@ search = widget.newButton( {
 				search.alpha = 1
 				search:setLabel( "Stop Search" )
 			end
-		end
-		if (search:getLabel( ) == "Stop Search") then
+		elseif (search:getLabel( ) == "Stop Search") then
 			if (e.phase == "began") then
 				search.alpha = .3
 			else
